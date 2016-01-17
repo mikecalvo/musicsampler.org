@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>2015 Music Sampler</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="../css/cover.css" rel="stylesheet">
+	<style>
+		.picker {
+			font-size:24px;
+		}
+		.tray {
+			margin-bottom: 30px;
+			min-width: 450px;
+		}
+		.other {
+			margin-top:20px;
+			margin-bottom:40px;
+		}
+	</style>
+</head>
+<body
+
+	<div class="site-wrapper">
+		<div class="site-wrapper-inner">
+			<div class="cover-container">
+
+				<div class="inner cover">
+					<h1 class="cover-heading" style="background-color: white; color: black;">2015</h1>
+
+					<div id="songs">
+					</div>
+				</div>
+
+				<div class="mastfoot">
+					<div class="inner">
+						<div class="row" id="tray">
+						</div>
+						<div class="other">
+							<a href="../years.html"><h3>Other years</h3></a>
+						</div>
+
+						<div class="spotify">
+							Listen on
+
+							<a href="https://open.spotify.com/user/lovetechnique/playlist/2N4WXNQdAc2ErASaRdoHBK"><img src="/spotify.png" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="../bootstrap-3.3.1/js/bootstrap.min.js"></script>
+	<script>
+		var tray = $('#tray');
+
+		var songs = [
+			{title: "Imagine", artist:"Gorgon City" },
+			{title: "Reality TV", artist:"Beat Connection" },
+			{title: "Tutti Fruiti", artist:"New Order" },
+			{title: "Lean On", artist:"Major Lazer" },
+			{title: "Slumlord", artist:"Neon Indian" },
+			{title: "I Known There's Gonna Be (Good Times)", artist:"Jamie XX" },
+			{title: "Tuyo", artist:"Rodrigo Amarante" },
+			{title: "My Terracotta Heart", artist:"Blur" },
+			{title: "California", artist:"Grimes" },
+			{title: "Holding On", artist:"Disclosure" },
+			{title: "Fratolish Hiang Perpeshk", artist:"Gwenno" },
+			{title: "Make A Scene", artist:"Shamir" },
+			{title: "Hotline Bling", artist:"Drake" },
+			{title: "Can't Feel My Face", artist:"The Weeknd" },
+			{title: "Dreams", artist:"Beck" },
+			{title: "Pills", artist:"White Reaper" },
+			{title: "Wind Up", artist:"Shopping" },
+			{title: "4th and Roebling", artist:"The Districts" },
+			{title: "Under a Rock", artist:"Waxahatchee" },
+			{title: "Depreston", artist:"Courtney Barnett" }
+			];
+
+		for (var s=0; s < songs.length; s++) {
+			var song = (s+1) < 10 ? '0'+(s+1) : ""+(s+1);
+			var clazz = s == 0 ? "current" : "hidden";
+			$('#songs').append('<div id="'+song+'" class="inner cover '+clazz+'"><h3>Track '+
+			song+'</h3><h1>'+songs[s].title+'</h1><h3>by '+songs[s].artist+'</h3></div>'
+			);
+		}
+
+		for (var i=0; i < songs.length; i++) {
+			var link = (i+1) < 10 ? '0'+(i+1) : ""+(i+1);
+			tray.append('<a class="picker" href="#'+link+'">'+link+'</a> ');
+			if (i < 19) {
+				tray.append(' | ');
+			}
+		}
+
+		$('.picker').on('click', function(source) {
+			$('.current').addClass('hidden');
+			$('.current').removeClass('current');
+
+			var id = $(source.target).text();
+			var shown = $('#'+id);
+			shown.removeClass('hidden');
+			shown.addClass('current');
+		});
+	</script>
+</body>
+</html>

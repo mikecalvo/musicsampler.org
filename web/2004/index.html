@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>2004 Music Sampler</title>
+<link rel="stylesheet" type="text/css" href="../css/main.css" />
+<script type="text/javascript" src="../js/prototype.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+
+<script type="text/javascript">
+
+function populateTracks() {
+	tracks = new Array( track('They', 'Jem', 'This is a really good song from a new artist that is from Wales, UK.  We haven&quot;t heard from her since'), 
+	track('Crucial', 'K-OS'), track('Lay Lady Lay', 'Magnet'),
+	track("Can't Stand Me Now", "Libertines"), track('Home', 'Zero 7'), track('Baby', 'Bebel Gilberto'),
+	track("Cherry Blossom Girl", "Air"), track('Gone Under Sea', 'Electrelane'), track("I'm Not Sorry", "Morrissey"),
+	track('Take Me Out', 'Franz Ferdinand'), track('Somewhere Only We Know', 'Keane'), track('Common People', 'William Shatner'),
+	track('Flood', 'Mosquitos'), track('Party Crashers', 'Radio 4'), track('University Microfilms International', 'Stereolab'),
+	track('Section 16 (One Man Show)', 'The Polyphonic Spree') ); 
+	
+	for (var i=0; i < tracks.length; i++) {
+		// Preload the image
+		var preload = new Image(200,200);
+		preload.src='covers/'+(i+1)+'.jpg';
+		preload.align='left';
+		images[i] = preload;
+		
+		var row = new Element('div', {'id': i, 'class': 'track' });
+		row.update("Track "+(i+1)+" - \""+tracks[i].title+"\" by "+tracks[i].artist);
+		row.observe('mouseover', handleMouseOver);
+		row.observe('click', handleClick);
+		row.observe('mouseout', handleMouseOut);
+		$('tracks').insert(row);
+	}
+}
+</script>
+
+</head>
+
+<body onload="populateTracks()" onclick="clearHighlight()">
+
+<div id="tracks"></div>
+<div id="footer" class="footer"><a href="../years.html">Other Years</a></div>
+</body>
+
+</html>

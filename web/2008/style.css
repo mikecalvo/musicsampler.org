@@ -1,0 +1,39 @@
+﻿body {
+   background-color: black;
+   color: white;
+   font-family: monospace;
+}
+
+A { font-weight: bold; }
+A:link { color: white; }
+A:visited { color: white; }
+A:hover { color: green; }
+
+.songHeader {
+   width:100%; 
+   text-align: center;
+   padding: 5px;
+}
+
+.songDetail  {
+   width: 95%;
+   border: 1px white solid;
+   padding: 5px;
+   margin: 5px;
+}
+
+.songTitle {}
+.songAlbum {}
+.songArtist {}
+
+td.songDescriptionCell  {vertical-align: top; width: 100%}
+td.coverArtCell {text-align:right; width: 200px; }
+
+.footer {
+width: 100%; text-align: center;
+}
+
+img.coverArt { width: 200px; height: 200px }
+
+.songIndex { width: 100% }
+.songList { }
