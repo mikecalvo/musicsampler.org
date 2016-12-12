@@ -66,7 +66,7 @@
   	}
 
     if (window.Hammer) {
-      var hammertime = new Hammer(myElement, myOptions);
+      var hammertime = new Hammer($('#tray'), {});
       hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
       hammertime.on('swipeleft', function(ev) {
         if (current_index < songs.length) {
