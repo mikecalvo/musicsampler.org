@@ -18,6 +18,7 @@
 			margin-bottom:40px;
 		}
 	</style>
+  <script src="../js/hammer.min.js"></script>
 </head>
 <body
 
@@ -52,6 +53,30 @@
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="../bootstrap-3.3.1/js/bootstrap.min.js"></script>
 	<script>
+    var current_index = 0;
+
+    var setSong(index) {
+			$('.current').addClass('hidden');
+			$('.current').removeClass('current');
+			var shown = $('#'+index);
+			shown.removeClass('hidden');
+			shown.addClass('current');
+      current_index = index;
+  	}
+
+    var hammertime = new Hammer(myElement, myOptions);
+    hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+    hammertime.on('swipeleft', function(ev) {
+      if (current_index < songs.length) {
+        setSong(current_index+1);
+      }
+     });
+     hammertime.on('swiperight', function(ev) {
+       if (current_index > 0) {
+         setSong(current_index-1);
+       }
+      });
+
 		var tray = $('#tray');
 
 		var songs = [
@@ -66,9 +91,10 @@
 			{title: "Shut Up Kiss Me", artist:"Angel Olsen" },
 			{title: "Creation", artist:"Beyond The Wizards Sleeve" },
 			{title: "All Four Walls", artist:"Gorgon City" },
-			{title: "Rince & Repeat", artist:"Riton" },
+			{title: "Rinse & Repeat", artist:"Riton" },
 			{title: "A Change Of Heart", artist:"The 1975" },
-			{title: "Present Tense", artist:"Radiohead" },
+      {title: "One Time", artist:"The 1975" },
+			{title: "Present Tense", artist:"MarianHill" },
 			{title: "Moth to the Flame", artist:"Chairlift" },
 			{title: "Come Down", artist:"Adnderson.Paak" },
 			{title: "Nothing More to Say", artist:"The Frightnrs" },
@@ -88,19 +114,14 @@
 		for (var i=0; i < songs.length; i++) {
 			var link = (i+1) < 10 ? '0'+(i+1) : ""+(i+1);
 			tray.append('<a class="picker" href="#'+link+'">'+link+'</a> ');
-			if (i < 19) {
+			if (i < (songs.length-1)) {
 				tray.append(' | ');
 			}
 		}
 
 		$('.picker').on('click', function(source) {
-			$('.current').addClass('hidden');
-			$('.current').removeClass('current');
-
-			var id = $(source.target).text();
-			var shown = $('#'+id);
-			shown.removeClass('hidden');
-			shown.addClass('current');
+      var id = $(source.target).text();
+      setSong(parseInt(id));
 		});
 	</script>
 </body>
