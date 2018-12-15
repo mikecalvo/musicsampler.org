@@ -19,7 +19,7 @@ include('../php/main.php');
 <body onload="populateTracks()" onclick="clearHighlight()">
 
 <div id="tracks"></div>
-<div id="footer" class="footer"><a href="../years.html">Other Years</a></div>
+<div id="footer" class="footer"><a href="/years">Other Years</a></div>
 
 </body>
 
