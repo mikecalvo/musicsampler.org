@@ -2,3 +2,5 @@
 *.iml
 vendor
 .idea
+node_modules/*
+.vscode/*

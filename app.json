@@ -1,7 +1,6 @@
 {
-  "name": "Start on Heroku: PHP",
-  "description": "A barebones PHP app that makes use of the Silex web framework",
-  "repository": "https://github.com/heroku/php-getting-started",
-  "addons": [],
-  "stack": "heroku-18"
+  "name": "Music Sampler",
+  "description": "Sharing Mike Calvo's music choices for the year",
+  "repository": "https://github.com/heroku/node-js-getting-started",
+  "image": "heroku/nodejs"
 }
