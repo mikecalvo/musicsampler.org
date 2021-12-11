@@ -51,8 +51,11 @@ express()
       try {
           if (req.params.year == 'years') {
             res.render('pages/years', await getYears());
-          } else {
+          } else if (!isNaN(req.params.year)) {
             res.render('pages/index', await getSongs(req.params.year));
+          } else {
+            console.log('No response for '+req.params.year);
+            res.send('');
           }
         } catch (err) {
           console.error(err);
