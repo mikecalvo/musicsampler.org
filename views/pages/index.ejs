@@ -8,13 +8,17 @@
 		<meta http-equiv="pragma" content="no-cache" />
 </head>
 <body>
-<ul>
-    <% results.forEach(function(r) { %>
+	Listen on <a href="https://open.spotify.com/playlist/<%=results.playlist_id %>"><img src="/images/spotify.png" /></a>
+<ol>
+    <% results.tracks.forEach(function(r) { %>
 		<li><%= r.artist %> - "<%= r.title %>" - <%= r.album %>
+			<% if (r.images && r.images.length > 0) { %> 
+				<div><img src="<%= r.images.find(i => i.width < 300).url %>" /></div>
+			<% } %>
 			<div><%= r.comments %></div>
 		</li>
 	<% }); %>
-</ul>
+</ol>
 
 <a href="/years">All Years</a>
 
