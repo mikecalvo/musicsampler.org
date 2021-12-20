@@ -108,7 +108,7 @@ const getSongs = async function(year) {
       console.log('Fetching Spotify Playlist for Year '+year+'('+spotify_id+')');
       await authSpotify();
       var tracks = await spotifyGetPlaylist(spotify_id);
-      return { 'results': {tracks: tracks, playlist_id:spotify_id } };
+      return { 'results': {tracks: tracks, playlist_id:spotify_id, year: year } };
     }
 
     const result = await client.query(`SELECT * FROM song where release_year=${year} order by track asc`);
