@@ -82,7 +82,7 @@ const spotifyGetPlaylist = async function(playlistId) {
 const getLatestYear = async function() {
   console.log('Getting latest year...')
     const client = await pool.connect();
-    const result = await client.query(`SELECT max(year) FROM spotify_playlist`);
+    const result = await client.query(`SELECT max(year) FROM playlist`);
     //const result = await client.query(`SELECT max(release_year) FROM song`);
     client.release();
     return result.rows[0].max;
@@ -91,7 +91,7 @@ const getLatestYear = async function() {
 
 const getYears = async function() {
     const client = await pool.connect();
-    const result = await client.query(`SELECT distinct year FROM spotify_playlist order by year desc`);
+    const result = await client.query(`SELECT distinct year FROM playlist order by year desc`);
     client.release();
     return { 'results': (result) ? result.rows : null };
 }
@@ -100,7 +100,7 @@ const getSongs = async function(year) {
     console.log("Getting songs for "+year);
 
     const client = await pool.connect();
-    const playlist_results = await client.query(`SELECT spotify_id FROM spotify_playlist where year=${year}`);
+    const playlist_results = await client.query(`SELECT spotify_id FROM playlist where year=${year}`);
 
     // TODO: pull the spotify playlist id from databse
     if (playlist_results && playlist_results.rows.length == 1 && playlist_results.rows[0].spotify_id) {
