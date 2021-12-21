@@ -113,7 +113,7 @@ const getSongs = async function(year) {
 
     const result = await client.query(`SELECT * FROM song where release_year=${year} order by track asc`);
     client.release();
-    return { 'results': (result) ? result.rows : null };
+    return { 'results': { tracks: ( (result) ? result.rows : null), playlist_id: null, year: year } };
 }
 
 express()

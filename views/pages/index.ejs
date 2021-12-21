@@ -8,8 +8,10 @@
 		<meta http-equiv="pragma" content="no-cache" />
 </head>
 <body>
+	<% if (results.playlist_id) { %>
 	Listen on to <%= results.year %> on <a href="https://open.spotify.com/playlist/<%=results.playlist_id %>"><img src="/images/spotify.png" /></a>
-<ol>
+	<% } %>
+	<ol>
     <% results.tracks.forEach(function(r) { %>
 		<li><%= r.artist %> - "<%= r.title %>" - <%= r.album %>
 			<% if (r.images && r.images.length > 0) { %> 
