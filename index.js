@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express')
 const path = require('path')
 const request = require('request-promise');
@@ -9,7 +11,7 @@ const { getTypeParser } = require('pg-types');
 const { log } = require('console');
 const { response } = require('express');
 
-const databaseUrl = process.env.DATABASE_URL || 'postgres://jthscyqaugwrkt:6fa9f9b01c1cf1cb8598ed737895661162ff5030eab720dbd96bdfa6bc31a03e@ec2-3-232-160-153.compute-1.amazonaws.com:5432/d8o015uo1ro2pn';
+const databaseUrl = process.env.DB_URL;
 console.log("Database URL = "+databaseUrl);
 const pool = new Pool({
   connectionString: databaseUrl,

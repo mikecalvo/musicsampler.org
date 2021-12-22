@@ -1,16 +1,16 @@
 {
     "name": "musicsampler",
-
     "engines": {
         "node": "16.x.x"
     },
-
     "main": "index.js",
     "scripts": {
+        "prestart": "node getEnv",
         "start": "node index.js"
     },
-    
     "dependencies": {
+        "@google-cloud/storage": "^5.16.1",
+        "dotenv": "^10.0.0",
         "ejs": "^3.1.5",
         "express": "^4.15.2",
         "pg": "^8.7.1",
