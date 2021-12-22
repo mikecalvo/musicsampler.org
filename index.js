@@ -8,9 +8,11 @@ const { Pool } = require('pg');
 const { getTypeParser } = require('pg-types');
 const { log } = require('console');
 const { response } = require('express');
-console.log("Database URL = "+process.env.DATABASE_URL);
+
+const databaseUrl = process.env.DATABASE_URL || 'postgres://jthscyqaugwrkt:6fa9f9b01c1cf1cb8598ed737895661162ff5030eab720dbd96bdfa6bc31a03e@ec2-3-232-160-153.compute-1.amazonaws.com:5432/d8o015uo1ro2pn';
+console.log("Database URL = "+databaseUrl);
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: databaseUrl,
   ssl: {
     rejectUnauthorized: false
   }
