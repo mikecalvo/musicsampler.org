@@ -121,7 +121,7 @@ const getSongs = async function(year) {
 }
 
 express()
-  .use(express.static(path.join(__dirname, 'public')))
+  .use(express.static(__dirname))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', async (req, res) => {

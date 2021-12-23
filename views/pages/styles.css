@@ -1,0 +1,58 @@
+.normalLink {
+  color: white;
+  text-decoration-line: none;
+}
+.container-fluid{
+  justify-content: flex-start !important;
+}
+.navbar-toggler{
+  margin-left: auto;
+  margin-right: 0;
+}
+.navbar{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+}
+#contents {
+  padding-top: 10vh;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+}
+
+.nav-link{
+  background: grey;
+  padding: 6px !important;
+  border-radius: 3px;
+  color: white !important;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.card {
+  margin-bottom: 8vh;
+  margin-left: 1.5vw;
+  margin-right: 1.5vw;
+  z-index: 0;
+  width: 30vw !important;
+}
+
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  background-color: white;
+  font-size: 2vw;
+  height: 4vw;
+  width: 4vw;
+  text-align: center;
+  border-radius: 2vw;
+  border: 2px solid black;
+  line-height: 4vw;
+}
+.nav-item{
+  margin-right: 27px;
+}
