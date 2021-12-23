@@ -11,7 +11,7 @@ const { getTypeParser } = require('pg-types');
 const { log } = require('console');
 const { response } = require('express');
 
-const databaseUrl = process.env.DB_URL;
+const databaseUrl = process.env.DATABASE_URL;
 console.log("Database URL = "+databaseUrl);
 const pool = new Pool({
   connectionString: databaseUrl,
