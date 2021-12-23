@@ -8,6 +8,7 @@ if (dotEnvExists) {
     process.exit();
 }
 
+/*
 const gcs = require('@google-cloud/storage')();
 const bucketName = `envvars.${process.env.GCLOUD_PROJECT}.musicsampler.org`;
 console.log(`Downloading .env from bucket "${bucketName}"`);
@@ -16,3 +17,4 @@ gcs.bucket(bucketName).file('env').download({destination: '.env'}).then(() => {
 }).catch(e => {
     console.log('Error getting .env: '+JSON.stringify(e));
 });
+*/

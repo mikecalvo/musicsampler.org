@@ -11,7 +11,7 @@ const { getTypeParser } = require('pg-types');
 const { log } = require('console');
 const { response } = require('express');
 
-const databaseUrl = process.env.DB_URL;
+const databaseUrl = process.env.DATABASE_URL;
 console.log("Database URL = "+databaseUrl);
 const pool = new Pool({
   connectionString: databaseUrl,
@@ -46,9 +46,8 @@ const authSpotify = async function() {
 };
 
 const spotifyGetPlaylist = async function(playlistId) {
-
   const options = {
-    url: 'https://api.spotify.com/v1/playlists/'+playlistId+'/tracks?fields=items(track(name,artists(name),album(release_date,name, images)))',
+    url: 'https://api.spotify.com/v1/playlists/'+playlistId+'/tracks?fields=items(track(name,artists(name),album(album_type,release_date,name,images)))',
     method: 'GET',
     headers: {
       'Authorization': 'Bearer ' + spotifyAccessToken
@@ -69,9 +68,10 @@ const spotifyGetPlaylist = async function(playlistId) {
         return {
           'title': track.name, 
           'artist': artist, 
-          'releaseDate': track.album.release_date, 
+          'release_date': track.album.release_date, 
           'album': track.album.name, 
-          'images':track.album.images
+          'images':track.album.images,
+          'is_single': track.album.album_type == 'single'
         };
       });
     })
@@ -87,7 +87,6 @@ const getLatestYear = async function() {
   console.log('Getting latest year...')
     const client = await pool.connect();
     const result = await client.query(`SELECT max(year) FROM playlist`);
-    //const result = await client.query(`SELECT max(release_year) FROM song`);
     client.release();
     return result.rows[0].max;
 
@@ -106,18 +105,19 @@ const getSongs = async function(year) {
     const client = await pool.connect();
     const playlist_results = await client.query(`SELECT spotify_id FROM playlist where year=${year}`);
 
-    // TODO: pull the spotify playlist id from databse
+    var results;
     if (playlist_results && playlist_results.rows.length == 1 && playlist_results.rows[0].spotify_id) {
       const spotify_id = playlist_results.rows[0].spotify_id;
       console.log('Fetching Spotify Playlist for Year '+year+'('+spotify_id+')');
       await authSpotify();
       var tracks = await spotifyGetPlaylist(spotify_id);
-      return { 'results': {tracks: tracks, playlist_id:spotify_id, year: year } };
+      results =  { 'results': {tracks: tracks, playlist_id:spotify_id, year: year } };
+    } else {
+      const result = await client.query(`SELECT * FROM song where release_year=${year} order by track asc`);
+      results = { 'results': { tracks: ( (result) ? result.rows : null), playlist_id: null, year: year } };
     }
-
-    const result = await client.query(`SELECT * FROM song where release_year=${year} order by track asc`);
     client.release();
-    return { 'results': { tracks: ( (result) ? result.rows : null), playlist_id: null, year: year } };
+    return results;
 }
 
 express()
