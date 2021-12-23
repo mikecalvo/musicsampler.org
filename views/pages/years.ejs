@@ -46,10 +46,15 @@
   <div id="contents">
 <ul>
     <% results.forEach(function(r) { %>
-		<li><a href="/<%= r.year %>"><%= r.year %></a></li>
+		<li><a href="/<%= r.year %>" class="year"><%= r.year %></a></li>
 	<% }); %>
 </ul>
 </div>
+<script>
+  var heightSlider = $('.navbar').height();
+  $('#contents').css({ marginTop: heightSlider + 16 + 'px' });
+  console.log(heightSlider);
+</script>
 
 <body>
 </html>

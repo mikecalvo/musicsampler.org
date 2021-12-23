@@ -13,22 +13,24 @@
   <!-- JQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- Bootstrap and custom CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="/views/pages/styles.css">
-  
+
 </head>
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">MusicSampler.org</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            
+
             <a href="https://open.spotify.com/playlist/<%=results.playlist_id %>" class="normalLink">
               <% if (results.playlist_id) { %>
                 Listen to <%= results.year %> on
@@ -43,38 +45,44 @@
       </div>
     </div>
   </nav>
-  <div id="contents">
-    <% results.tracks.forEach(function(r, index) { %>
-      <div class="card" style="width: 18rem;">
-        <% if (r.images && r.images.length> 0) { %>
-          <img src="<%= r.images.find(i => i.width > 300).url %>" class="card-img-top" alt="Image of album cover">
-          <div class="top-left">
-            <%= (index+1) %>
-          </div>
-          <% } %>
-            <div class="card-body">
-              <p class="card-text">
-                <%= (index+1) %>. <br>
-                "<%= r.title %>" <br>
-                by <%= r.artist %> <br>
-                <% if (r.album) { %>
-                  <% if (!r.is_single) { %> from the album '<%= r.album %>' <% } else { %> Released as a single on %><%=r.release_date%> <% }%>
-                <% } %>
-
-              </p>
-              <p>
-                <%= r.comments %>
-              </p>
+  <div id="contents" class="container-fluid">
+    <div class="row">
+      <% results.tracks.forEach(function(r, index) { %>
+        <div class="card col-sm-3">
+          <% if (r.images && r.images.length> 0) { %>
+            <img src="<%= r.images.find(i => i.width > 300).url %>" class="card-img-top" alt="Image of album cover">
+            <div class="top-left">
+              <%= (index+1) %>
             </div>
-      </div>
-      <% }); %>
+            <% } %>
+              <div class="card-body">
+                <p class="card-text">
+                  <%= (index+1) %>. <br>
+                    "<%= r.title %>" <br>
+                      by <%= r.artist %> <br>
+                        <% if (r.album) { %>
+                          <% if (!r.is_single) { %> from the album '<%= r.album %>' <% } else { %> Released as a single
+                                on %><%=r.release_date%>
+                                  <% }%>
+                                    <% } %>
+
+                </p>
+                <p>
+                  <%= r.comments %>
+                </p>
+              </div>
+        </div>
+        <% }); %>
+    </div>
   </div>
   <script>
     var heightSlider = $('.navbar').height();
     $('#contents').css({ marginTop: heightSlider + 16 + 'px' });
     console.log(heightSlider);
   </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
 
   <body>
 
